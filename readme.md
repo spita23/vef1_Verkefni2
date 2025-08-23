@@ -116,7 +116,7 @@ Síða með formi til að skrá sig á sýningu, formið skiptist í fjögur sv�
 - Bóka
   - „Samþykki skilmála“
     - Box sem hægt er að haka í.
-    - Texti skal vera hlekkur sem fer á skilmála síðu, en þar sem hún er ekki til skal nota „Um“ síðu.
+    - Texti skal vera hlekkur sem fer á skilmála síðu, en þar sem hún er ekki til skal nota „Um“ síðu. Síðan skal opnast í nýjum glugga/tab.
   - „Panta og greiða“, takki sem sendir pöntun (en gerir ekki neitt)
 
 Aðeins á að setja upp formið, **engin** forritun fyrir virkni í formi með JavaScript eða í bakenda. Þegar formið er sent á ekkert að gerast, jafnvel þó síðan hlaðist inn aftur og engin gögn séu til staðar er það í fínu lagi.
@@ -177,4 +177,11 @@ Sett verða fyrir tíu minni verkefni þar sem átta bestu gilda 5% hvert, samta
 
 Sett verða fyrir tvö hópverkefni þar sem hvort um sig gildir 10%, samtals 20% af lokaeinkunn.
 
-> Útgáfa 0.1
+> Útgáfa 0.2
+
+## Útgáfusaga
+
+| Útgáfa | Lýsing                       |
+| ------ | ---------------------------- |
+| 0.1    | Fyrsta útgáfa verkefnisins   |
+| 0.2    | Bætti við `gogn/syningar.md` |
