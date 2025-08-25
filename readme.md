@@ -1,5 +1,7 @@
 # Vefforritun 1, 2025: Verkefni 2, HTML #2
 
+[Yfirferð í fyrirlestri](https://youtu.be/KTDBT8mUo4U).
+
 ## Markmið
 
 - Vinna með og velja HTML element.
@@ -29,6 +31,8 @@ Setja skal upp fjórar síður fyrir listasafn, aðgengilegar af internetinu (ge
 
 Gefið efni er í textaskrám undir [`gogn/`](gogn/) og er á Markdown formi. Ekki á að birta nákvæmlega það efni sem kemur fram heldur fylgja leiðbeiningum í hverri skrá fyrir sig og því sem kemur fram hér.
 
+Athugið að ef Markdown skjal er opnað á GitHub er það birt sem HTML og sýnir útlit sem ekki skal nýta, t.d. eru línur undir fyrirsögnum. Til að sjá eingöngu Markdown skjalið er „raw“ útgáfa valin í vefviðmóti GitHub eða allt [verkefnið sótt sem zip skjal](https://github.com/vefforritun/vef1-2025-v2/archive/refs/heads/main.zip). Að sækja sem zip skjal er betri leið þar sem þá er einnig hægt að vinna verkefnið út frá þeirri möppu.
+
 Gefnar myndir eru í `myndir/` og skal vísa í þær þar. Nota þarf relative vísun úr `sidur/` yfir í `myndir/` þar sem við á. Myndir skulu ekki færðar. Leyfilegt er að minnka myndir eða setja `width` eigindi (attribute) á mynd (`<img>` element) til að takmarka breidd þeirra.
 
 Gefin er tóm mappa `sidur/` sem skal innihalda allar síður _fyrir utan_ forsíðuna.
@@ -41,7 +45,7 @@ Myndir:
 - [Mynd af fólki](myndir/folk.jpg)
   - Lýsing á mynd: Mynd innan úr listasafni þar sem fjórar manneskjur skoða þrjú málverk og listaverk í kössum upp við vegginn. Við sjáum eingöngu baksvip þeirra. Málverkin eru í völdugum römmum og sýna senur úti.
   - [Frá Unsplash](https://unsplash.com/photos/people-standing-in-front-of-paintings-3hxlxmo2Oc0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) eftir [Zalfa Imani](https://unsplash.com/@zalfaimani?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
-- „Sharing“ mynd
+- [„Sharing“ mynd](myndir/sharing.jpg)
   - Lýsing á mynd: Svarthvít mynd af sófum. Í bakgrunni eru þrjú listaverk sem ekki eru í fókus.
   - [Frá Unsplash](https://unsplash.com/photos/a-black-and-white-photo-of-a-living-room-kCTpeeB_UiQ?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) eftir [Sarah](https://unsplash.com/@sarahses?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
 
@@ -177,11 +181,12 @@ Sett verða fyrir tíu minni verkefni þar sem átta bestu gilda 5% hvert, samta
 
 Sett verða fyrir tvö hópverkefni þar sem hvort um sig gildir 10%, samtals 20% af lokaeinkunn.
 
-> Útgáfa 0.2
+> Útgáfa 0.3
 
 ## Útgáfusaga
 
-| Útgáfa | Lýsing                       |
-| ------ | ---------------------------- |
-| 0.1    | Fyrsta útgáfa verkefnisins   |
-| 0.2    | Bætti við `gogn/syningar.md` |
+| Útgáfa | Lýsing                                                                                                                                   |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.1    | Fyrsta útgáfa verkefnisins                                                                                                               |
+| 0.2    | Bætti við `gogn/syningar.md`                                                                                                             |
+| 0.3    | Nánari útskýring á hvernig Markdown skjöl séu skoðuð án útlits; bæta við myndum í `gogn/index.md`; setja tengil á yfirferð í fyrirlestri |

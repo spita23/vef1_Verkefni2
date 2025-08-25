@@ -12,6 +12,8 @@ Komdu að skoða list!
 
 Listasafnið stendur fyrir sýningum sem eru opnar almenningi.
 
+(Hér skal setja mynd af húsi, myndir/hus.jpg)
+
 [Nánar um sýningar](#tengill á sýningar síðu).
 
 ## Skráðu hópinn þinn á sýningu
@@ -19,5 +21,7 @@ Listasafnið stendur fyrir sýningum sem eru opnar almenningi.
 (Fyrir ofan fyrirsögn skal vera textinn „Sýningar“)
 
 Tökum við einstaklingum og hópum í leiðsögn.
+
+(Hér skal setja mynd af fólki, myndir/folk.jpg)
 
 [Skráðu þig](#tengill á skráningar síðu).
