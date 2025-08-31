@@ -23,9 +23,111 @@
         </nav>
     </header>
 
-        <p>Skráðu þig eða hópinn þinn á sýningu hjá Listasafninu.</p>
-        <a href="um.html">Um okkur</a>
+        <main id="main-content">
+            <form>
+                <fieldset>
+                    <legend>Sýning</legend>
+                    <label for="syning">Hvaða sýningu viljið þið skrá ykkur á?</label>
+                    <select id="syning" name="syning" required>
+                        <optgroup label="Núverandi sýningar">
+                            <option value="Skuggar og Speglar">Skuggar og Speglar - Prufa Prufudóttir (Salur 1)</option>
+                            <option value="Tómarýmið">Tómarýmið - Ekkitil Gervison (Salur 2)</option>
+                            <option value="Þokan kemur">Þokan kemur - Gervimaður Sýndarson (Salur 3)</option>
+                            <option value="Litir í lífinu">Litir í lífinu - Plat Blekkingardóttir (Salur 4)</option>
+                            <option value="Form">Form - Frú Plat (Skáli)</option>
+                        </optgroup>
+                        <optgroup label="Næstu sýningar">
+                           <option value="Dansað á línu">Dansað á línu - Testa Gervidóttir (Salur 1)</option>
+                            <option value="Rýmið sem tími">Rýmið sem tími - Gervimaður Prufuson (Salur 2)</option>
+                            <option value="öðruvísi">öðruvísi - Plat Persóna (Skáli)</option>
+                            <option value="Flæði einskis">Flæði einskis - Ekkert Ekkertson (Salur 1)</option>
+                            <option value="Ímyndaðu þér">Ímyndaðu þér - Foolína Bardóttir (Salur 3)</option>
+                            <option value="Síðasti vefurinn">Síðasti vefurinn - Vefmundur Prufuson (Salur 3)</option>
+                            <option value="Tölvulist">Tölvulist - Lorem Ipsumson (Salur 4)</option>
+                            <option value="abc">abc - Prufandi Einstaklingur (Skáli)</option>
+                            <option value="handan alls">handan alls - Rosalegur Gervimaður Prufuson (Salur 2)</option>
+                            <option value="Hljóðmyndir">Hljóðmyndir - Prufmundur Gervison (Salur 1)</option>
+                            <option value="Brenglun">Brenglun - Gervey Tests (Skáli)</option>
+                            <option value="Snert af engu">Snert af engu - Prófari Prófar (Salur 2)</option>
+                            <option value="Víðerni í spegli">Víðerni í spegli - Engin Nafnsdóttir (Salur 4)</option>
+                            <option value="Fölsk birta">Fölsk birta - Arnór Daníelsson (Salur 1)</option>
+                            <option value="forritaður flótti">forritaður flótti - Testrún Foodóttir (Salur 2)</option>
+                            <option value="Rótleysi">Rótleysi - Gervimaður Ipsum (Skáli)</option>
+                            <option value="Brot úr mynstri">Brot úr mynstri - Testurður Vefson (Salur 3)</option>
+                            <option value="Frostmál">Frostmál - Engin (Salur 4)</option>
+                            <option value="nafnlaust">nafnlaust - Platgeir Platsson (Salur 1)</option>
+                            <option value="Fjarvera">Fjarvera - Lorema Gervey (Salur 2)</option>
+                        </optgroup>
+                    </select> 
+                    <label>
+                        <input type="checkbox" name="Allar sýningar">
+                        Allar sýningar sem í boði eru á völdum degi
+                    </label>
+                </fieldset>
 
+                <fieldset>
+                    <legend>Hópur</legend>
+                    <label for="fjoldi">Fjöldi í hóp</label>
+                    <input type="number" id="fjoldi" name="fjoldi" min="1" max="20" required>
+                    <label for ="hopupplysingar">Upplýsingar um hóp</label>
+                    <textarea id="hopupplysingar" name="hopupplysingar"></textarea>
+                    <p>Hverskonar hópur er þetta og hvert er meginmarkið heimsóknarinnar?</p>
+                    <label for="email">Netfang tengiliðar</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="simanumer">Símanúmer</label>
+                    <input type="tel" id="simanumer" name="simanumer" pattern="[0-9]{3}-[0-9]{4}" required>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Dagsetning og tími</legend>
+                    <label for="dagsetning">Hvenær viljið þið koma?</label>
+                    <input type="date" id="dagsetning" name="dagsetning" required>
+                    <label for="timi">Klukkan hvað?</label>
+                    <select id="timi" name="timi" required>
+                        <option value="10:00">10:00</option>
+                        <option value="10:30">10:30</option>
+                        <option value="11:00">11:00</option>
+                        <option value="11:30">11:30</option>
+                        <option value="12:00">12:00</option>
+                        <option value="12:30">12:30</option>
+                        <option value="13:00">13:00</option>
+                        <option value="13:30">13:30</option>
+                        <option value="14:00">14:00</option>
+                        <option value="14:30">14:30</option>
+                        <option value="15:00">15:00</option>
+                        <option value="15:30">15:30</option>
+                        <option value="16:00">16:00</option>
+                        <option value="16:30">16:30</option>
+                        <option value="17:00">17:00</option>
+                    </select>
+                    <label for="timalengd">Hve lengi?</label>
+                    <select id="timalengd" name="timalengd" required>
+                        <option value="1:00">1:00</option>
+                        <option value="1:30">1:30</option>
+                        <option value="2:00">2:00</option>
+                        <option value="2:30">2:30</option>
+                        <option value="3:00">3:00</option>
+                        <option value="3:30">3:30</option>
+                        <option value="4:00">4:00</option>
+                        <option value="4:30">4:30</option>
+                        <option value="5:00">5:00</option>
+                    </select>
+                    <p>Mælt er með að taka tvær klukkustundir eða lengur fyrir sýningar í sal 1</p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Bóka</legend>
+                    <label>
+                        <input type="checkbox" name="skilmalar" required>
+                        Samþykki <a href="um.html" target="_blank">skilmála</a>
+                    </label>
+                    <button type="submit">Panta og greiða</button>
+                </fieldset>
+            </form>
+
+            <p><a href="../index.html">Aftur á forsíðu</a></p>
+        </main>
+       
         <footer>
     <div class="footer-content">
         <h2>Opnunartímar</h2>
