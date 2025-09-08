@@ -124,7 +124,6 @@ nav {
   position: fixed;
   top: 0;
   left: 0;
-
   height: 4rem;
   border-bottom: 1px solid #000;
   background-color: #ffffff;
@@ -145,13 +144,16 @@ nav ul li {
 }
 
 /* TODO fleiri selectorar fyrir valmynd */
-nav strong, nav a {
+nav strong {
   font-family: 'Atkinson Hyperlegible Mono', monospace;
-  line-height: 4rem; /* Miðjar lóðrétt */
+  line-height: 4rem;
+  text-decoration: underline; /* Undirstrikar valið atriði */
 }
 
-nav strong {
-  text-decoration: underline;
+nav a {
+  font-family: 'Atkinson Hyperlegible Mono', monospace;
+  line-height: 4rem;
+  text-decoration: none;
 }
 
 
@@ -232,11 +234,11 @@ body.index .wrapper header.intro p {
 }
 
 body.index .card:nth-child(2) .card-content {
-  flex-direction: row; /* Image left, text right */
+  flex-direction: row; 
 }
 
 body.index .card:nth-child(3) .card-content {
-  flex-direction: row-reverse; /* Text left, image right */
+  flex-direction: row-reverse; 
 }
 
 .card .card-content img {
@@ -252,7 +254,7 @@ body.index .card:nth-child(3) .card-content {
 }
 
 .card .card-text p:last-child {
-  margin-top: auto; /* Pushes the link to the bottom */
+  margin-top: auto; 
 }
 
 .card .card-footer {
@@ -280,53 +282,53 @@ body.um main {
 }
 
 
-/** Töflur **/
-body.syningar main {
-  padding-top: 4rem;
+/** Töflur/syningar **/
+body.syningar main section {
+  margin-bottom: 1rem; 
+}
+
+body.syningar main h2 {
+  margin-bottom: 0; 
 }
 
 body.syningar table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 1rem;
-}
-
-body.syningar th,
-body.syningar td {
-  border: 1px solid #000000;
-  padding: 0.5rem;
-  text-align: left;
+  margin-bottom: 1rem; 
 }
 
 body.syningar th {
-  font-family: 'Gelasio', serif;
-  font-weight: 700;
+  font-weight: 700; 
+  text-align: left;
+  padding: 0.5rem;
+  background-color: #ffffff;
 }
 
-/** Form **/
+body.syningar td {
+  text-align: left; 
+  padding: 0.5rem;
+}
+
+body.syningar tr:nth-child(odd) {
+  background-color: #ff9999; 
+}
+
+body.syningar tr:nth-child(even) {
+  background-color: #ffffff; 
+}
+
+/** Form/skraning **/
 body.skraning main {
   padding-top: 4rem;
 }
 
-body.skraning form {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
 body.skraning fieldset {
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border: 1px solid #000000;
+  margin-bottom: 1rem; 
+  border: none;
 }
 
 body.skraning legend {
-  font-family: 'Gelasio', serif;
-  font-weight: 700;
-}
-
-body.skraning label {
-  display: block;
-  margin-bottom: 0.5rem;
+  font-size: 1.5rem; 
 }
 
 body.skraning input[type="number"],
@@ -334,26 +336,36 @@ body.skraning input[type="email"],
 body.skraning input[type="tel"],
 body.skraning select,
 body.skraning textarea {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #000000;
-  margin-bottom: 1rem;
+  max-width: 450px; 
+  padding: 0.5rem; 
+  background-color: #ffffff; 
+  margin-bottom: 1rem; 
+  width: 100%; 
 }
 
 body.skraning textarea {
-  height: 100px;
+  height: 100px; 
 }
 
 body.skraning button {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #ff9999; 
+  color: #000000; 
   padding: 0.5rem 1rem;
   border: none;
   cursor: pointer;
 }
 
 body.skraning button:hover {
-  background-color: #333333;
+  background-color: #cc6666; 
+}
+
+body.skraning label {
+  display: block; 
+  margin-bottom: 0.5rem; 
+}
+
+body.skraning input[type="checkbox"] {
+  margin-right: 0.5rem; 
 }
 /* TODO */
 
