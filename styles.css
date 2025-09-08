@@ -27,6 +27,19 @@ html {
 }
 
 /** Letur og stærðir **/
+@font-face {
+  font-family: 'Atkinson Hyperlegible Mono';
+  src: url('fonts/AtkinsonHyperlegibleMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gelasio';
+  src: url('fonts/Gelasio-VariableFont.woff2') format('woff2-variations');
+  font-weight: 400 700;
+  font-style: normal;
+}
 
 /**
  * Grunnstærð er 16px svo 1rem = 16 px.
@@ -34,33 +47,38 @@ html {
  */
 html {
   font-size: 16px;
-
 }
 
-/* Leturgerðir sem við sækjum úr fonts/ möppu */
-@font-face {
-  /* TODO */
+body {
+  font-family: 'Gelasio', serif;
+  font-weight: 400;
+  color: #000000;
+  background-color: #ffffff;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
+
 
 /*** Allt meginmál notar Gelasio ***/
 html,
 input,
 select,
 button {
-  font-family: "Gelasio", "Georgia", serif;
+  font-family: "Gelasio", serif;
 }
 
 /*** Allar fyrirsagnir nota Atkinson Hyperlegible regular ***/
-h1,
-h2,
-h3,
-legend {
-  /* TODO */
+h1, h2, h3, legend {
+  font-family: 'Atkinson Hyperlegible Mono', monospace;
+  font-weight: 400;
 }
+
 
 /** Lætur myndir aldrei taka meira pláss en foreldri skilgreinir **/
 img {
   max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
 }
 
 /** Litur á hlekkjum erfist frá foreldri **/
@@ -73,11 +91,6 @@ input,
 button,
 select {
   font-size: inherit;
-}
-
-body {
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
 
 /**
@@ -117,6 +130,7 @@ nav {
   background-color: #ffffff;
   width: 100%;
   padding: 0 1rem;
+  z-index: 100;
 }
 
 nav ul {
@@ -131,28 +145,66 @@ nav ul li {
 }
 
 /* TODO fleiri selectorar fyrir valmynd */
+nav strong, nav a {
+  font-family: 'Atkinson Hyperlegible Mono', monospace;
+  line-height: 4rem; /* Miðjar lóðrétt */
+}
+
+nav strong {
+  text-decoration: underline;
+}
+
 
 /** Haus á síðum **/
 
 header {
-
+text-align: center;
+  margin-bottom: 4rem;
 }
 
 /* TODO fleiri selectorar fyrir hausa */
 
+
+header h1 {
+  font-size: 3rem; /* 48px */
+}
 /** Meginmál og efni forsíðu **/
 
 main {
   margin-left: auto;
   margin-right: auto;
-  max-width: 1600px;
+  max-width: 900px;
 }
 
 /** Forsíða inngangsmynd **/
-
-.intro {
-  /* TODO */
+body.index .wrapper header.intro {
+  position: relative;
+  background-image: url('myndir/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  padding: 20rem 1rem 4rem;
 }
+
+body.index .wrapper header.intro::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+body.index .wrapper header.intro h1,
+body.index .wrapper header.intro p {
+  position: relative;
+  z-index: 2;
+  color: #ffffff
+}
+
 
 /* TODO fleiri selectorar fyrir forsíðu inngangsmyndar */
 
@@ -161,25 +213,176 @@ main {
  */
 
 .card {
-  /* TODO */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card .card-header {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.card .card-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+body.index .card:nth-child(2) .card-content {
+  flex-direction: row; /* Image left, text right */
+}
+
+body.index .card:nth-child(3) .card-content {
+  flex-direction: row-reverse; /* Text left, image right */
+}
+
+.card .card-content img {
+  flex: 1;
+  max-width: 20%;
+}
+
+.card .card-text {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card .card-text p:last-child {
+  margin-top: auto; /* Pushes the link to the bottom */
+}
+
+.card .card-footer {
+  width: 100%;
+  text-align: left;
+  padding-top: 1rem;
+}
+
+/* Um síða */
+body.um main section {
+  margin-bottom: 1rem; 
 }
 
 /* TODO fleiri selectorar fyrir cards */
+body.index .kicker {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
 
 /** Efnissíða **/
+body.um main {
+  padding-top: 4rem;
+}
 
-/* TODO */
 
 /** Töflur **/
+body.syningar main {
+  padding-top: 4rem;
+}
 
-/* TODO */
+body.syningar table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+body.syningar th,
+body.syningar td {
+  border: 1px solid #000000;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+body.syningar th {
+  font-family: 'Gelasio', serif;
+  font-weight: 700;
+}
 
 /** Form **/
+body.skraning main {
+  padding-top: 4rem;
+}
 
+body.skraning form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+body.skraning fieldset {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #000000;
+}
+
+body.skraning legend {
+  font-family: 'Gelasio', serif;
+  font-weight: 700;
+}
+
+body.skraning label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+body.skraning input[type="number"],
+body.skraning input[type="email"],
+body.skraning input[type="tel"],
+body.skraning select,
+body.skraning textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #000000;
+  margin-bottom: 1rem;
+}
+
+body.skraning textarea {
+  height: 100px;
+}
+
+body.skraning button {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+body.skraning button:hover {
+  background-color: #333333;
+}
 /* TODO */
 
 /** Fótur **/
-
 footer {
+  background-color: #ff9999;
+  padding: 1rem;
+}
 
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.footer-section h2 {
+  margin-bottom: 1rem;
+}
+
+.footer-section h3 {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section p {
+  margin-bottom: 0.5rem;
 }
