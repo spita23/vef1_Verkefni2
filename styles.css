@@ -1,14 +1,10 @@
-/* Setjum inn „reset“ sem fjarlægir margin og padding af öllu */
 * {
   margin: 0;
   padding: 0;
 }
-
-/* Reiknum stærð á öllum boxum sem border-box */
 html {
   box-sizing: border-box;
 }
-/* og látum erfast á allt */
 *,
 *:before,
 *:after {
@@ -26,59 +22,66 @@ html {
   width: 1px;
 }
 
+/** Stillingar **/
+
+:root {
+  --font-size-base: 16px;
+  --font-size-headings: 1.5rem;
+
+  /* Grunn bilið okkar er 1rem == 16px */
+  --spacing: 1rem;
+
+  /* Hámarks og lágmarks breidd á efni */
+  /* TODO stilling */
+
+  /* Hæð á nav */
+  --height-nav: 4rem;
+
+  /* Border breiddir */
+  /* TODO fleiri stillingar */
+
+  /* Litir */
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #000000;
+  --color-accent: #ff9999;
+  --color-background-form: var(--color-white);
+  --color-border-with-background: var(--color-purple-dark);
+
+  /* Letur stillingar */
+  --font-base-size: 1rem;
+  /* TODO fleiri stillingar */
+}
+
 /** Letur og stærðir **/
-@font-face {
-  font-family: 'Atkinson Hyperlegible Mono';
-  src: url('fonts/AtkinsonHyperlegibleMono-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-}
 
-@font-face {
-  font-family: 'Gelasio';
-  src: url('fonts/Gelasio-VariableFont.woff2') format('woff2-variations');
-  font-weight: 400 700;
-  font-style: normal;
-}
-
-/**
- * Grunnstærð er 16px svo 1rem = 16 px.
- * Notum í framhaldi heil og hálf margfeldi af þessu, t.d. 1.5rem til að fá „eitt og hálft bilt“
- */
 html {
-  font-size: 16px;
+  /* TODO setja stærð út frá custom property */
 }
 
-body {
-  font-family: 'Gelasio', serif;
-  font-weight: 400;
-  color: #000000;
-  background-color: #ffffff;
-  padding-left: 1rem;
-  padding-right: 1rem;
+/* Leturgerðir sem við sækjum úr fonts/ möppu */
+@font-face {
+  /* TODO */
 }
-
 
 /*** Allt meginmál notar Gelasio ***/
 html,
 input,
 select,
 button {
-  font-family: "Gelasio", serif;
+  font-family: "Gelasio", "Georgia", serif;
 }
 
 /*** Allar fyrirsagnir nota Atkinson Hyperlegible regular ***/
-h1, h2, h3, legend {
-  font-family: 'Atkinson Hyperlegible Mono', monospace;
-  font-weight: 400;
+h1,
+h2,
+h3,
+legend {
+  /* TODO */
 }
-
 
 /** Lætur myndir aldrei taka meira pláss en foreldri skilgreinir **/
 img {
   max-width: 100%;
-  height: auto;
-  margin-bottom: 1rem;
 }
 
 /** Litur á hlekkjum erfist frá foreldri **/
@@ -107,12 +110,11 @@ select {
   /* pláss fyrir nav, það er nákvæmlega svona hátt */
   margin-top: 4rem;
   width: 100%;
-
-  /* Án þessa getum við lent í að síður með minna af efni séu ekki með bil fyrir neðan fót */
   min-height: 100vh;
+
+  background-color: var(--color-background-primary);
 }
 
-/* Allt auka pláss fer í main, ekki haus eða fót */
 .wrapper main {
   flex: 1;
 }
@@ -121,92 +123,34 @@ select {
  * Nav er fast efst og fylgir þegar við skrollum síðu.
  */
 nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 4rem;
-  border-bottom: 1px solid #000;
-  background-color: #ffffff;
-  width: 100%;
-  padding: 0 1rem;
-  z-index: 100;
+  /* TODO */
 }
 
 nav ul {
-  list-style: none;
-  text-align: center;
-}
-
-nav ul li {
-  display: inline-block;
-  font-size: 1.5rem;
-  margin-left: 1rem;
+  /* TODO */
 }
 
 /* TODO fleiri selectorar fyrir valmynd */
-nav strong {
-  font-family: 'Atkinson Hyperlegible Mono', monospace;
-  line-height: 4rem;
-  text-decoration: underline; /* Undirstrikar valið atriði */
-}
-
-nav a {
-  font-family: 'Atkinson Hyperlegible Mono', monospace;
-  line-height: 4rem;
-  text-decoration: none;
-}
-
 
 /** Haus á síðum **/
 
 header {
-text-align: center;
-  margin-bottom: 4rem;
+  /* TODO */
 }
 
 /* TODO fleiri selectorar fyrir hausa */
 
-
-header h1 {
-  font-size: 3rem; /* 48px */
-}
 /** Meginmál og efni forsíðu **/
 
 main {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 900px;
+  /* TODO */
 }
 
 /** Forsíða inngangsmynd **/
-body.index .wrapper header.intro {
-  position: relative;
-  background-image: url('myndir/background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  padding: 20rem 1rem 4rem;
-}
 
-body.index .wrapper header.intro::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+.intro {
+  /* TODO */
 }
-
-body.index .wrapper header.intro h1,
-body.index .wrapper header.intro p {
-  position: relative;
-  z-index: 2;
-  color: #ffffff
-}
-
 
 /* TODO fleiri selectorar fyrir forsíðu inngangsmyndar */
 
@@ -215,186 +159,23 @@ body.index .wrapper header.intro p {
  */
 
 .card {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.card .card-header {
-  text-align: left;
-  margin-bottom: 1rem;
-}
-
-.card .card-content {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-body.index .card:nth-child(2) .card-content {
-  flex-direction: row; 
-}
-
-body.index .card:nth-child(3) .card-content {
-  flex-direction: row-reverse; 
-}
-
-.card .card-content img {
-  flex: 1;
-  max-width: 20%;
-}
-
-.card .card-text {
-  flex: 1;
-  max-width: 50%;
-  display: flex;
-  flex-direction: column;
-}
-
-.card .card-text p:last-child {
-  margin-top: auto; 
-}
-
-.card .card-footer {
-  width: 100%;
-  text-align: left;
-  padding-top: 1rem;
-}
-
-/* Um síða */
-body.um main section {
-  margin-bottom: 1rem; 
+  /* TODO */
 }
 
 /* TODO fleiri selectorar fyrir cards */
-body.index .kicker {
-  display: block;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
 
 /** Efnissíða **/
-body.um main {
-  padding-top: 4rem;
-}
 
+/* TODO */
 
-/** Töflur/syningar **/
-body.syningar main section {
-  margin-bottom: 1rem; 
-}
+/** Töflur **/
 
-body.syningar main h2 {
-  margin-bottom: 0; 
-}
+/* TODO */
 
-body.syningar table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1rem; 
-}
+/** Form **/
 
-body.syningar th {
-  font-weight: 700; 
-  text-align: left;
-  padding: 0.5rem;
-  background-color: #ffffff;
-}
-
-body.syningar td {
-  text-align: left; 
-  padding: 0.5rem;
-}
-
-body.syningar tr:nth-child(odd) {
-  background-color: #ff9999; 
-}
-
-body.syningar tr:nth-child(even) {
-  background-color: #ffffff; 
-}
-
-/** Form/skraning **/
-body.skraning main {
-  padding-top: 4rem;
-}
-
-body.skraning fieldset {
-  margin-bottom: 1rem; 
-  border: none;
-}
-
-body.skraning legend {
-  font-size: 1.5rem; 
-}
-
-body.skraning input[type="number"],
-body.skraning input[type="email"],
-body.skraning input[type="tel"],
-body.skraning select,
-body.skraning textarea {
-  max-width: 450px; 
-  padding: 0.5rem; 
-  background-color: #ffffff; 
-  margin-bottom: 1rem; 
-  width: 100%; 
-}
-
-body.skraning textarea {
-  height: 100px; 
-}
-
-body.skraning button {
-  background-color: #ff9999; 
-  color: #000000; 
-  padding: 0.5rem 1rem;
-  border: none;
-  cursor: pointer;
-}
-
-body.skraning button:hover {
-  background-color: #cc6666; 
-}
-
-body.skraning label {
-  display: block; 
-  margin-bottom: 0.5rem; 
-}
-
-body.skraning input[type="checkbox"] {
-  margin-right: 0.5rem; 
-}
 /* TODO */
 
 /** Fótur **/
-footer {
-  background-color: #ff9999;
-  padding: 1rem;
-}
 
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.footer-section {
-  flex: 1;
-  padding: 0 1rem;
-}
-
-.footer-section h2 {
-  margin-bottom: 1rem;
-}
-
-.footer-section h3 {
-  margin-bottom: 0.5rem;
-}
-
-.footer-section p {
-  margin-bottom: 0.5rem;
-}
+/* TODO */
