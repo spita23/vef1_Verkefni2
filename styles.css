@@ -32,64 +32,96 @@ html {
   --spacing: 1rem;
 
   /* Hámarks og lágmarks breidd á efni */
-  /* TODO stilling */
+  --max-width: 1100px;
 
   /* Hæð á nav */
   --height-nav: 4rem;
 
+  /* Grind */
+  --columns: 12;
+  --gutter: 30px;
+  --offset: 20px;
+
+  /* Breidd á efni með offset */
+  --width-offset: calc(100% - (2 * var(--offset)));
+
+  /* Bil á milli „stærri“ eininga (header, efnisbox, footer) */
+  --vertical-space-small: calc(var(--gutter) * 1);
+  --vertical-space-large: calc(var(--gutter) * 1.5);
+
+  --vertical-space: var(--vertical-space-small);
+
   /* Border breiddir */
-  /* TODO fleiri stillingar */
+  --border-nav: 2px solid var(--color-background-secondary);
+  --border-radius-regular: 5px;
 
   /* Litir */
   --color-background-primary: #ffffff;
   --color-background-secondary: #000000;
   --color-accent: #ff9999;
-  --color-background-form: var(--color-white);
-  --color-border-with-background: var(--color-purple-dark);
+  --color-protection: rgba(0, 0, 0, 0.35);
 
   /* Letur stillingar */
   --font-base-size: 1rem;
-  /* TODO fleiri stillingar */
+  --font-family-base: "Gelasio", "Georgia", serif;
+  --font-family-heading: "Atkinson Hyperlegible", "Courier New", monospace;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background-primary: #000000;
+    --color-background-secondary: #ffffff;
+    --color-accent: #660000;
+    --color-protection: rgba(255, 255, 255, 0.5);
+    --border-nav: 2px solid var(--color-background-secondary);
+  }
+}
+
+body {
+  background-color: var(--color-background-primary);
+  color: var(--color-background-secondary);
 }
 
 /** Letur og stærðir **/
 
 html {
   font-size: var(--font-size-base);
-  /* TODO setja stærð út frá custom property */
 }
 
-/* Leturgerðir sem við sækjum úr fonts/ möppu */
 @font-face {
-  font-family: 'Atkinson Hyperlegible Mono';
-  src: url('fonts/AtkinsonHyperlegibleMono-Regular.woff2') format('woff2');
+  font-family: "Atkinson Hyperlegible";
+  font-style: normal;
   font-weight: 400;
-  font-style: normal;
+  src: url("./fonts/AtkinsonHyperlegibleMono-VariableFont_wght.ttf")
+    format("woff2");
 }
 
 @font-face {
-  font-family: 'Gelasio';
-  src: url('fonts/Gelasio-VariableFont.woff2') format('woff2-variations');
-  font-weight: 400 700;
+  font-family: "Gelasio";
   font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/Gelasio-VariableFont_wght.ttf") format("woff2");
 }
 
+@font-face {
+  font-family: "Gelasio";
+  font-weight: 700;
+  src: url("./fonts/Gelasio-VariableFont_wght.ttf") format("woff2");
+}
 
-/*** Allt meginmál notar Gelasio ***/
 html,
 input,
 select,
 button {
-  font-family: "Gelasio", "Georgia", serif;
+  font-family: var(--font-family-base);
 }
 
-/*** Allar fyrirsagnir nota Atkinson Hyperlegible regular ***/
 h1,
 h2,
 h3,
 legend {
-  font-family: 'Atkinson Hyperlegible Mono', monospace;
-  font-weight: 400;
+  font-family: var(--font-family-heading);
 }
 
 /** Lætur myndir aldrei taka meira pláss en foreldri skilgreinir **/
@@ -109,6 +141,19 @@ select {
   font-size: inherit;
 }
 
+/** Almennt takka útlit, getur virkað á bæði <a> og <button> **/
+.button {
+  display: inline-block;
+  padding: calc(var(--spacing) * 0.5) var(--spacing);
+  border: 0;
+  border-radius: var(--border-radius-regular);
+
+  color: var(--color-background-primary);
+  background-color: var(--color-background-secondary);
+  font-size: 1rem;
+  text-decoration: none;
+}
+
 /**
  * Eftirfarandi setur upp grunn umbrot (layout) síðu með flexbox.
  * Við förum yfir flexbox í viku 4 + verkefni 4 en þangað til er hægt að nota þetta
@@ -117,358 +162,372 @@ select {
  * innan <body> sem á að fylgja þessu (<nav> ætti að vera undanskilið).
  */
 .wrapper {
-  display: flex;
-  flex-direction: column;
-
-  /* pláss fyrir nav, það er nákvæmlega svona hátt */
-  margin-top: 4rem;
-  width: 100%;
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--offset), 1fr)
+    [main-start] repeat(12, minmax(0, calc((var(--max-width) - (11 * var(--gutter))) / 12)))
+    [main-end]
+    minmax(var(--offset), 1fr) [full-end];
+  column-gap: var(--gutter);
+  margin-top: var(--height-nav);
   min-height: 100vh;
-
   background-color: var(--color-background-primary);
 }
 
-.wrapper main {
-  flex: 1;
+.wrapper > * {
+  grid-column: main-start / main-end;
 }
 
-/**
- * Nav er fast efst og fylgir þegar við skrollum síðu.
- */
 nav {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
+
+  width: 100vw;
   height: var(--height-nav);
-  border-bottom: 1px solid var(--color-background-secondary);
+  overflow: hidden;
+
   background-color: var(--color-background-primary);
-  width: 100%;
-  padding: 0 var(--spacing);
-  z-index: 100;
+  border-bottom: var(--border-nav);
 }
 
 nav ul {
-  list-style: none;
-  text-align: center;
   display: flex;
+
+  width: 100%;
+  padding: var(--spacing);
+
+  overflow: auto;
+
+  gap: calc(var(--spacing) * 2);
   justify-content: center;
-  align-items: center;
-  height: 100%;
+
+  list-style: none;
 }
 
-/* TODO fleiri selectorar fyrir valmynd */
 nav ul li {
-  font-size: 1.5rem;
-  margin-left: var(--spacing);
-}
-
-nav strong {
-  font-family: 'Atkinson Hyperlegible Mono', monospace;
-  line-height: var(--height-nav);
-  text-decoration: underline; 
+  white-space: nowrap;
+  font-size: var(--font-size-headings);
+  font-family: var(--font-family-heading);
 }
 
 nav a {
-  font-family: 'Atkinson Hyperlegible Mono', monospace;
-  line-height: var(--height-nav);
   text-decoration: none;
 }
 
 nav a:hover,
 nav a:focus {
-  text-decoration: underline; 
+  text-decoration: underline;
+}
+
+nav strong {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+/** hide in mobile á 780 af því þá á þeirri breidd hætttir maður að sjá allann textann í valmynd **/
+@media (max-width: 780px) {
+  nav .hide-in-mobile {
+    display: none;
+  }
+  nav ul {
+    gap: var(--spacing); 
+  }
+  nav ul li {
+    font-size: var(--font-base-size); 
+  }
 }
 
 /** Haus á síðum **/
 
 header {
+  grid-column: full-start / full-end;
+  padding: var(--spacing) calc(var(--spacing) * 1.5);
   text-align: center;
-  margin-bottom: var(--spacing);
 }
 
-/* TODO fleiri selectorar fyrir hausa */
 header h1 {
-  font-size: 3rem; 
+  font-size: calc(var(--font-size-headings) * 2);
+  text-transform: uppercase;
 }
 
 /** Meginmál og efni forsíðu **/
-main {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: var(--max-width-content);
-}
 
+main {
+  margin: 0 auto calc(var(--spacing) * 2) auto;
+  padding-left: var(--spacing);
+  padding-right: var(--spacing);
+  width: 100%;
+  max-width: var(--max-width);
+}
 
 /** Forsíða inngangsmynd **/
 
 .intro {
+  display: flex;
   position: relative;
-  background-image: url('myndir/background.jpg');
-  background-size: cover;
-  background-position: center;
+  margin-bottom: calc(var(--spacing) * 2);
+  min-height: calc(100vh - var(--height-nav));
+
+  color: var(--color-background-primary);
+
+  background-position: 50% 50%;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  padding: 20rem var(--spacing) var(--spacing);
+  background-size: cover;
+  background-image: url(./myndir/background.jpg);
 }
 
-/* TODO fleiri selectorar fyrir forsíðu inngangsmyndar */
-.intro::before {
-  content: '';
+.intro .protection {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-.intro h1,
-.intro section {
-  position: relative;
-  z-index: 2;
-  color: var(--color-background-primary);
-  text-align: center;
-}
-
-.intro h1 {
-  margin-bottom: var(--spacing); 
-}
-/**
- * Cards á forsíðu.
- */
-
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing);
-  margin-bottom: var(--spacing);
-  position: relative;
-}
-
-/* TODO fleiri selectorar fyrir cards */
-.card .card-header {
-  position: absolute;
-  top: 0; 
-  left: 0;
-  width: 100%;
-}
-
-.card .card-content {
-  display: flex;
-  align-items: stretch;
-  gap: var(--spacing);
-  position: relative;
-  min-height: 200px;
-}
-
-.card:nth-child(1) .card-content {
-  flex-direction: row; 
-}
-
-.card:nth-child(1) .card-content .card-text-container{
-  order: 1;
-  position: relative;
-}
-
-.card:nth-child(1) .card-content img {
-  order: 2;
-  max-width: 20%;
-}
-
-.card:nth-child(2) .card-content {
-  flex-direction: row;
-}
-
-.card:nth-child(2) .card-content .card-text-container{
-  order: 2;
-  position: relative;
-}
-
-.card:nth-child(2) .card-content img {
-  order: 1; 
-  max-width: 20%; 
-}
-
-.card .card-content img {
-  flex: 1;
-  max-width: 20%;
-  object-fit: cover;
-}
-
-.card .card-text-container {
-  flex: 1;
-  max-width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-}
-
-.card .kicker {
-  display: flex;
-  margin-bottom: 0.25rem;
-}
-
-.card .card-text {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0;
-  width: 100%;
-}
-
-.card .card-footer {
-  position: absolute;
+  right: 0;
   bottom: 0;
   left: 0;
-  width: 100%;
-  padding-top: 0;
+  z-index: 1;
+
+  background-color: var(--color-protection);
 }
 
-.card .card-footer a {
-  border: 2px solid var(--color-background-secondary);
-  background-color: var(--color-background-secondary);
-  color: var(--color-background-primary);
-  padding: 0.25rem 0.5rem;
-  text-decoration: none;
+.intro .content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 2em;
 }
+
+.intro .content h1 {
+  margin-top: calc(var(--spacing) * -4);
+}
+
+.intro .content h1,
+.intro .content h2 {
+  margin-bottom: calc(var(--spacing) * 4);
+}
+
+/**
+ * Cards á forsíðu.
+ * Líta hræðilega út og erfitt að stýra með float! Lögum í verkefni 4 með því að nota flexbox.
+ */
+
+.cards {
+  display: grid;
+  gap: calc(var(--spacing) * 2);
+  margin-bottom: calc(var(--spacing) * 2);
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+   gap: var(--spacing);
+}
+
+.card .card__header {
+  width: 100%;
+}
+
+.card .card__content {
+  display: flex;
+  gap: var(--spacing);
+  flex-direction: column;
+}
+
+.card .card__text {
+  flex: 1;
+}
+
+.card .card__image {
+  flex-basis: 40%;
+  width: 100%;
+}
+
+.card .card__kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.card .card__title {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.card .card__image img {
+  display: block;
+
+  border-top-left-radius: var(--border-radius-regular);
+  border-top-right-radius: var(--border-radius-regular);
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.card:nth-child(2n) .card__image {
+  order: -1;
+}
+
+@media (max-width: 699px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+  .card__image {
+    order: 0 !important;
+  }
+}
+
 /** Efnissíða **/
-body.um main section {
+
+.content section {
   margin-bottom: var(--spacing);
 }
-
-body.um main h2 {
-  margin-bottom: 0;
-}
-
 
 /** Töflur **/
-body.syningar main section {
+
+table {
   margin-bottom: var(--spacing);
-}
-
-body.syningar main h2 {
-  margin-bottom: 0;
-}
-
-body.syningar table {
+  border-spacing: 0;
   width: 100%;
-  border-collapse: collapse;
-  margin-bottom: var(--spacing);
 }
 
-body.syningar th {
-  font-weight: 700;
+table th,
+table td {
+  padding: calc(var(--spacing) / 2);
   text-align: left;
-  padding: 0.5rem;
-  background-color: var(--color-background-primary);
 }
 
-body.syningar td {
-  text-align: left;
-  padding: 0.5rem;
-}
-
-body.syningar tr:nth-child(odd) {
+table tbody tr:nth-child(2n + 1) {
   background-color: var(--color-accent);
-}
-
-body.syningar tr:nth-child(even) {
-  background-color: var(--color-background-primary);
 }
 
 /** Form **/
-body.skraning main {
-  padding-top: var(--spacing);
-  display: flex;
-  flex-direction: column;
+
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--spacing);
 }
 
-body.skraning .fieldset-container {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: var(--spacing);
-}
-
-body.skraning .fieldset-container fieldset {
-  flex: 1;
-  margin-right: var(--spacing);
-}
-
-body.skraning fieldset {
-  margin-bottom: var(--spacing);
-  border: none;
-}
-
-body.skraning legend {
-  font-size: var(--font-size-headings);
-}
-
-body.skraning input[type="number"],
-body.skraning input[type="email"],
-body.skraning input[type="tel"],
-body.skraning select,
-body.skraning textarea {
-  max-width: 450px;
-  padding: 0.5rem;
-  background-color: var(--color-background-form);
-  margin-bottom: var(--spacing);
+fieldset {
   width: 100%;
+  max-width: 450px;
+  border: 0;
 }
 
-body.skraning textarea {
-  height: 100px;
+fieldset legend {
+  margin-bottom: var(--spacing);
+  font-size: 1.5rem;
 }
 
-body.skraning button {
+fieldset div {
+  width: 100%;
+  margin-bottom: var(--spacing);
+}
+
+fieldset div label {
+  display: block;
+}
+
+fieldset div span {
+  display: block;
+  margin-top: calc(var(--spacing) / 2);
+}
+
+fieldset input,
+fieldset select,
+fieldset textarea {
+  padding: calc(var(--spacing) / 2);
+  width: 100%;
+  border: 1px solid #000000;
+
+  background-color: #ffffff;
+}
+
+fieldset input[type="checkbox"] {
+  display: inline-block;
+  margin-right: calc(var(--spacing) / 2);
+  width: auto;
+}
+
+.submit {
+  grid-column: 1 / -1;
+}
+
+.submit .button {
   background-color: var(--color-accent);
   color: var(--color-background-secondary);
-  padding: 0.5rem 1rem;
-  border: none;
-  cursor: pointer;
-}
-
-body.skraning button:hover {
-  background-color: #cc6666;
-}
-
-body.skraning label {
-  display: flex;
-  margin-bottom: 0.5rem;
-}
-
-body.skraning input[type="checkbox"] {
-  margin-right: 0.5rem;
 }
 
 /** Fótur **/
+
 footer {
-  text-align: center;
-  background-color: var(--color-accent);
+  grid-column: full-start / full-end;
   padding: var(--spacing);
+  background-color: var(--color-accent);
 }
 
-.footer-content {
+footer .content {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  max-width: var(--max-width-content);
+  max-width: var(--max-width);
   margin: 0 auto;
+  gap: var(--spacing);
 }
 
 .footer-section {
   flex: 1;
-  padding: 0 var(--spacing);
+  min-width: 250px;
+  text-align: center;
+  padding: var(--spacing);
 }
 
-.footer-section h2 {
+@media (max-width: 549px) {
+  footer .content {
+    flex-direction: column;
+    gap: 0;
+  }
+  .footer-section {
+    min-width: auto;
+    width: 100%;
+    margin-bottom: var(--spacing);
+  }
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer h2 {
   margin-bottom: var(--spacing);
 }
 
-.footer-section h3 {
-  margin-bottom: 0.5rem;
+footer section,
+footer ul {
+  margin-bottom: var(--spacing);
 }
 
-.footer-section p {
-  margin-bottom: 0.5rem;
+@media (min-width: 550px) {
+  :root {
+    --vertical-space: var(--vertical-space-large);
+  }
+}
+
+@media (min-width: 700px) {
+  .cards {
+    gap: calc(var(--spacing) * 2);
+  }
+}
+
+@media (min-width: 900px) {
+  main {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
